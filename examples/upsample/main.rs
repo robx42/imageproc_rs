@@ -24,7 +24,12 @@ fn main(){
     imgbuf.save("outputs/redblue_small.png").unwrap();
 
     for (x,y,pixel) in imgbufup.enumerate_pixels_mut() {
-        *pixel = *(imgbuf.get_pixel((x/a) as u32, (y/a) as u32));
+        if (x%a == 0) || (y%a == 0) {
+            *pixel = image::Rgb([0,0,0])
+            
+        } else {
+            *pixel = *(imgbuf.get_pixel((x/a) as u32, (y/a) as u32))
+        };
     }
 
     imgbufup.save("outputs/redblue_large_sh.png").unwrap();
